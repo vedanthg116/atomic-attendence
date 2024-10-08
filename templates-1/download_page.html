@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Download Excel Sheet</title>
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+         }
+         .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+         }
+         h1 {
+            color: #007bff; /* Blue color */
+            margin-bottom: 20px;
+         }
+         .download-button {
+            margin-top: 20px;
+         }
+         .download-button a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff; /* Blue color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+         }
+         .download-button a:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+         }
+         .back-button {
+            margin-top: 20px;
+         }
+         .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ccc;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+         }
+         .back-button a:hover {
+            background-color: #999; /* Darker shade on hover */
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <h1>Attendance Downloader</h1>
+         <div class="download-button">
+            <a href="{{ url_for('download_excel', file=excel_file_path) }}">Download Excel Sheet</a>
+         </div>
+         <div class="back-button">
+            <a href="/">Back to Home</a>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face-Warden (Beta)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333; /* Darker text color */
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .selected-files {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #888;
+        }
+        /* Advanced file selection style */
+        .file-input {
+            display: none;
+        }
+        .custom-file-input {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .custom-file-input:hover {
+            background-color: #0056b3;
+        }
+        .selected-files {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #888;
+        }
+        /* Center the buttons */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        /* Style for centering buttons */
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face-Warden (Beta)</h1>
+        <form action="/process_images" method="post" enctype="multipart/form-data">
+            <label for="subject">Enter Subject Name:</label>
+            <input type="text" name="subject" id="subject" required>
+            
+            <label for="class_info">Enter Class Name:</label>
+            <input type="text" name="class_info" id="class_info" required>
+            
+            <label for="selected_images">Select Photos:</label>
+            <label for="selected_images" class="custom-file-input">Choose Files</label>
+            <input type="file" name="selected_images" id="selected_images" accept=".jpg, .jpeg, .png" class="file-input" multiple required>
+            <div class="selected-files" id="selected_files_label">No files selected</div>
+            
+            <div class="button-container center-buttons">
+                <button type="submit" class="process-button">Process Images</button>
+            </div>
+        </form>    
+        <div class="result">
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('selected_images');
+        const selectedFilesLabel = document.getElementById('selected_files_label');
+        
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files.length > 0) {
+                let fileList = '';
+                for (const file of files) {
+                    fileList += file.name + ', ';
+                }
+                selectedFilesLabel.textContent = 'Selected files: ' + fileList.slice(0, -2);
+            } else {
+                selectedFilesLabel.textContent = 'No files selected';
+            }
+        });
+    </script>
+</body>
+</html>
